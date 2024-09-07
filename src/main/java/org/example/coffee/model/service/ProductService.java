@@ -16,4 +16,8 @@ public class ProductService {
     public List<ProductDTO> getProductList() throws SQLException {
         return repo.findAll();
     }
+
+    public List<String> getCategoryList() throws SQLException {
+        return repo.findAllCategory();
+    }
 }

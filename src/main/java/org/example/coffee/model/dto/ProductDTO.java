@@ -2,7 +2,7 @@ package org.example.coffee.model.dto;
 import java.time.LocalDateTime;
 
 /**
- * 상풒 DTO 클래스
+ * 상품 DTO 클래스
  */
 
 public class ProductDTO {

@@ -12,6 +12,10 @@ import org.springframework.web.bind.annotation.RestController;
 import java.sql.SQLException;
 import java.util.List;
 
+/**
+ * 상품 Controller 클래스
+ */
+
 @RestController
 @RequestMapping("/product")
 public class ProductController {
@@ -22,6 +26,12 @@ public class ProductController {
     public ResponseEntity<List<ProductDTO>> getProductLlist() throws SQLException {
         List<ProductDTO> products = productService.getProductList();
         return ResponseEntity.ok(products);
+    }
+
+    @GetMapping("/category")
+    public ResponseEntity<List<String>> getCategoryList() throws SQLException {
+        List<String> categories = productService.getCategoryList();
+        return ResponseEntity.ok(categories);
     }
 
 }
