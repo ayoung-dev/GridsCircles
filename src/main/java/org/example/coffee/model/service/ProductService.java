@@ -24,4 +24,8 @@ public class ProductService {
     public List<ProductDTO> getProductByCategoryList(String category) throws SQLException {
         return repo.findByCategory(category);
     }
+
+    public int addProduct(ProductDTO product) throws SQLException {
+        return repo.insert(product);
+    }
 }

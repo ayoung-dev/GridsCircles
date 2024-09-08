@@ -3,7 +3,7 @@
 <mapper namespace="org.example.coffee.model.repository.ProductRepository">
 
 <select id="findAll" resultType="org.example.coffee.model.dto.ProductDTO">
-SELECT PRODUCT_ID AS 'productId',PRODUCT_NAME AS 'productName',CATEGORY,PRICE,DESCRIPTION,CREATED_AT AS 'createdAt',UPDATED_AT AS 'updatedAt' FROM PRODUCTS
+SELECT PRODUCT_ID AS 'productId', PRODUCT_NAME AS 'productName', CATEGORY, PRICE, DESCRIPTION, CREATED_AT AS 'createdAt', UPDATED_AT AS 'updatedAt' FROM PRODUCTS
 </select>
 
 <select id="findAllCategory" resultType="string">
@@ -11,8 +11,13 @@ SELECT DISTINCT CATEGORY FROM PRODUCTS
 </select>
 
 <select id="findByCategory" parameterType="string" resultType="org.example.coffee.model.dto.ProductDTO">
-SELECT PRODUCT_ID AS 'productId',PRODUCT_NAME AS 'productName',CATEGORY,PRICE,DESCRIPTION,CREATED_AT AS 'createdAt',UPDATED_AT AS 'updatedAt' FROM PRODUCTS
+SELECT PRODUCT_ID AS 'productId', PRODUCT_NAME AS 'productName', CATEGORY, PRICE, DESCRIPTION, CREATED_AT AS 'createdAt', UPDATED_AT AS 'updatedAt' FROM PRODUCTS
 WHERE CATEGORY = #{cat}
 </select>
+
+<insert id="insert" parameterType="org.example.coffee.model.dto.ProductDTO">
+INSERT INTO PRODUCTS(PRODUCT_ID, PRODUCT_NAME, CATEGORY, PRICE, DESCRIPTION, CREATED_AT)
+VALUES(UUID_TO_BIN(#{productId}), #{productName}, #{category}, #{price}, #{description}, NOW())
+</insert>
 
 </mapper>

@@ -1,10 +1,10 @@
 package org.example.coffee.controller;
 
+import com.fasterxml.uuid.Generators;
 import org.example.coffee.model.dto.ProductDTO;
 import org.example.coffee.model.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.sql.SQLException;
@@ -49,5 +49,16 @@ public class ProductController {
     public ResponseEntity<List<ProductDTO>> getProductByCategoryList(@PathVariable("cat") String category) throws SQLException {
         List<ProductDTO> products = productService.getProductByCategoryList(category);
         return ResponseEntity.ok(products);
+    }
+
+    /**
+     * 상품을 등록하는 메서드
+     * @param product 등록할 상품 객체
+     */
+    @PostMapping("/add")
+    public ResponseEntity<ProductDTO> addProduct(@RequestBody ProductDTO product) throws SQLException {
+        product.setProductId(String.valueOf(Generators.timeBasedGenerator().generate()));
+        productService.addProduct(product);
+        return ResponseEntity.ok(product);
     }
 }
