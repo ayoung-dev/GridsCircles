@@ -1,6 +1,5 @@
 package org.example.coffee.controller;
 
-import com.fasterxml.uuid.Generators;
 import org.example.coffee.model.dto.ProductDTO;
 import org.example.coffee.model.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -56,20 +55,30 @@ public class ProductController {
      * @param product 등록할 상품 객체
      */
     @PostMapping("/add")
-    public ResponseEntity<ProductDTO> addProduct(@RequestBody ProductDTO product) throws SQLException {
-        product.setProductId(String.valueOf(Generators.timeBasedGenerator().generate()));
+    public ResponseEntity<Void> addProduct(@RequestBody ProductDTO product) throws SQLException {
         productService.addProduct(product);
-        return ResponseEntity.ok(product);
+        return ResponseEntity.ok().build();
     }
 
     /**
      * 상품을 수정하는 메서드
-     * @param product 등록할 상품 객체
+     * @param productId 수정할 상품 아이디
+     * @param product 수정할 상품 객체
      */
     @PutMapping("/{productId}")
-    public ResponseEntity<ProductDTO> updateProduct(@PathVariable("productId") String productId, @RequestBody ProductDTO product) throws SQLException {
+    public ResponseEntity<Void> updateProduct(@PathVariable("productId") String productId, @RequestBody ProductDTO product) throws SQLException {
         product.setProductId(productId);
         productService.updateProduct(product);
-        return ResponseEntity.ok(product);
+        return ResponseEntity.ok().build();
+    }
+
+    /**
+     * 상품을 삭제하는 메서드
+     * @param productId 삭제할 상품 아이디
+     */
+    @DeleteMapping("/{productId}")
+    public ResponseEntity<Void> deleteProduct(@PathVariable("productId") String productId) throws SQLException {
+        productService.deleteProduct(productId);
+        return ResponseEntity.ok().build();
     }
 }

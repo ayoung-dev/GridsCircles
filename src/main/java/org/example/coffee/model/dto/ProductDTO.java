@@ -16,13 +16,11 @@ public class ProductDTO {
 
     public ProductDTO() {}
 
-    public ProductDTO(String productId, String productName, String category, int price, String description, LocalDateTime createdAt) {
-        this.productId = productId;
+    public ProductDTO(String productName, String category, int price, String description) {
         this.productName = productName;
         this.category = category;
         this.price = price;
         this.description = description;
-        this.createdAt = createdAt;
     }
 
 
