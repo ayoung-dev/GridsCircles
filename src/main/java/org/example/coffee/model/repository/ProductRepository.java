@@ -11,5 +11,6 @@ public interface ProductRepository {
     List<ProductDTO> findAll() throws SQLException;
     List<String> findAllCategory() throws SQLException;
     List<ProductDTO> findByCategory(String category) throws SQLException;
-    int insert(ProductDTO productDTO) throws SQLException;
+    int insertProduct(ProductDTO productDTO) throws SQLException;
+    int updateProduct(ProductDTO productDTO) throws SQLException;
 }

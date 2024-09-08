@@ -25,6 +25,7 @@ public class ProductDTO {
         this.createdAt = createdAt;
     }
 
+
     public String getProductId() {
         return productId;
     }
