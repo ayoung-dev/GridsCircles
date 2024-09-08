@@ -6,4 +6,8 @@
 INSERT INTO ORDERS(ORDER_ID, EMAIL, ADDRESS, POSTCODE, ORDER_STATUS, CREATED_AT)
 VALUES(UUID_TO_BIN(UUID()), #{email}, #{address}, #{postcode}, #{orderStatus}, NOW())
 </insert>
+
+<delete id="deleteOrder" parameterType="string">
+DELETE FROM ORDERS WHERE BIN_TO_UUID(ORDER_ID) = #{orderId}
+</delete>
 </mapper>
