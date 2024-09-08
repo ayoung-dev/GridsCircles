@@ -9,4 +9,5 @@ import java.sql.SQLException;
 public interface OrderRepository {
     int insertOrder(OrderDTO orderDTO) throws SQLException;
     int deleteOrder(String orderId) throws SQLException;
+    int updateOrder(OrderDTO orderDTO) throws SQLException;
 }

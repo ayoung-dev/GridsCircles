@@ -19,4 +19,8 @@ public class OrderService {
     public int deleteOrder(String orderId) throws SQLException {
         return repo.deleteOrder(orderId);
     }
+
+    public int updateInfo(OrderDTO orderDTO) throws SQLException {
+        return repo.updateOrder(orderDTO);
+    }
 }
