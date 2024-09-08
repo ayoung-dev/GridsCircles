@@ -2,7 +2,7 @@ package org.example.coffee.model.dto;
 import java.time.LocalDateTime;
 
 /**
- * 상풒 DTO 클래스
+ * 상품 DTO 클래스
  */
 
 public class ProductDTO {
@@ -28,7 +28,7 @@ public class ProductDTO {
         return productName;
     }
 
-    public void setproductName(String productName) {
+    public void setProductName(String productName) {
         this.productName = productName;
     }
 
