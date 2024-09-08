@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.example.coffee.model.repository.OrderRepository">
+
+<insert id="insertOrder" parameterType="org.example.coffee.model.dto.OrderDTO">
+INSERT INTO ORDERS(ORDER_ID, EMAIL, ADDRESS, POSTCODE, ORDER_STATUS, CREATED_AT)
+VALUES(UUID_TO_BIN(UUID()), #{email}, #{address}, #{postcode}, #{orderStatus}, NOW())
+</insert>
+</mapper>
