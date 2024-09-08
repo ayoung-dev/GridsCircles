@@ -28,7 +28,7 @@ public class ProductDTO {
         return productName;
     }
 
-    public void setproductName(String productName) {
+    public void setProductName(String productName) {
         this.productName = productName;
     }
 

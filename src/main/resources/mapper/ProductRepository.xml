@@ -10,4 +10,9 @@ SELECT PRODUCT_ID AS 'productId',PRODUCT_NAME AS 'productName',CATEGORY,PRICE,DE
 SELECT DISTINCT CATEGORY FROM PRODUCTS
 </select>
 
+<select id="findByCategory" parameterType="string" resultType="org.example.coffee.model.dto.ProductDTO">
+SELECT PRODUCT_ID AS 'productId',PRODUCT_NAME AS 'productName',CATEGORY,PRICE,DESCRIPTION,CREATED_AT AS 'createdAt',UPDATED_AT AS 'updatedAt' FROM PRODUCTS
+WHERE CATEGORY = #{cat}
+</select>
+
 </mapper>
