@@ -4,6 +4,7 @@
 
 <select id="findAll" resultType="org.example.coffee.model.dto.ProductDTO">
 SELECT BIN_TO_UUID(PRODUCT_ID) AS 'productId', PRODUCT_NAME AS 'productName', CATEGORY, PRICE, DESCRIPTION, CREATED_AT AS 'createdAt', UPDATED_AT AS 'updatedAt' FROM PRODUCTS
+ORDER BY CREATED_AT DESC
 </select>
 
 <select id="findAllCategory" resultType="string">
@@ -13,11 +14,12 @@ SELECT DISTINCT CATEGORY FROM PRODUCTS
 <select id="findByCategory" parameterType="string" resultType="org.example.coffee.model.dto.ProductDTO">
 SELECT BIN_TO_UUID(PRODUCT_ID) AS 'productId', PRODUCT_NAME AS 'productName', CATEGORY, PRICE, DESCRIPTION, CREATED_AT AS 'createdAt', UPDATED_AT AS 'updatedAt' FROM PRODUCTS
 WHERE CATEGORY = #{cat}
+ORDER BY CREATE_AT
 </select>
 
 <insert id="insertProduct" parameterType="org.example.coffee.model.dto.ProductDTO">
 INSERT INTO PRODUCTS(PRODUCT_ID, PRODUCT_NAME, CATEGORY, PRICE, DESCRIPTION, CREATED_AT)
-VALUES(UUID_TO_BIN(#{productId}), #{productName}, #{category}, #{price}, #{description}, NOW())
+VALUES(UUID_TO_BIN(UUID()), #{productName}, #{category}, #{price}, #{description}, NOW())
 </insert>
 
 <update id="updateProduct" parameterType="org.example.coffee.model.dto.ProductDTO">
@@ -28,7 +30,7 @@ UPDATE PRODUCTS SET
     <if test="category != null">
         CATEGORY = #{category},
     </if>
-    <if test="price != null">
+    <if test="price != 0">
         PRICE = #{price},
     </if>
     <if test="description != null">
@@ -37,5 +39,9 @@ UPDATE PRODUCTS SET
     UPDATED_AT = #{updatedAt}
 WHERE BIN_TO_UUID(PRODUCT_ID) = #{productId}
 </update>
+
+<delete id="deleteProduct" parameterType="string">
+DELETE FROM PRODUCTS WHERE BIN_TO_UUID(PRODUCT_ID) = #{productId}
+</delete>
 
 </mapper>

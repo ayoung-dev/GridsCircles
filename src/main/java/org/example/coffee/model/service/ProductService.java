@@ -32,4 +32,8 @@ public class ProductService {
     public int updateProduct(ProductDTO product) throws SQLException {
         return repo.updateProduct(product);
     }
+
+    public int deleteProduct(String productId) throws SQLException {
+        return repo.deleteProduct(productId);
+    }
 }
