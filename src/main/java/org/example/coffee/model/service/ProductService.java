@@ -26,6 +26,10 @@ public class ProductService {
     }
 
     public int addProduct(ProductDTO product) throws SQLException {
-        return repo.insert(product);
+        return repo.insertProduct(product);
+    }
+
+    public int updateProduct(ProductDTO product) throws SQLException {
+        return repo.updateProduct(product);
     }
 }

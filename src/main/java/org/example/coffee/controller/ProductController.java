@@ -61,4 +61,15 @@ public class ProductController {
         productService.addProduct(product);
         return ResponseEntity.ok(product);
     }
+
+    /**
+     * 상품을 수정하는 메서드
+     * @param product 등록할 상품 객체
+     */
+    @PutMapping("/{productId}")
+    public ResponseEntity<ProductDTO> updateProduct(@PathVariable("productId") String productId, @RequestBody ProductDTO product) throws SQLException {
+        product.setProductId(productId);
+        productService.updateProduct(product);
+        return ResponseEntity.ok(product);
+    }
 }
