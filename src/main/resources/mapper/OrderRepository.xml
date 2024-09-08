@@ -7,6 +7,18 @@ INSERT INTO ORDERS(ORDER_ID, EMAIL, ADDRESS, POSTCODE, ORDER_STATUS, CREATED_AT)
 VALUES(UUID_TO_BIN(UUID()), #{email}, #{address}, #{postcode}, #{orderStatus}, NOW())
 </insert>
 
+<update id="updateOrder" parameterType="org.example.coffee.model.dto.OrderDTO">
+UPDATE ORDERS SET
+    <if test="address != null">
+        ADDRESS = #{address},
+    </if>
+    <if test="postcode != null">
+        POSTCODE = #{postcode},
+    </if>
+    UPDATED_AT = #{updatedAt}
+WHERE BIN_TO_UUID(ORDER_ID) = #{orderId}
+</update>
+
 <delete id="deleteOrder" parameterType="string">
 DELETE FROM ORDERS WHERE BIN_TO_UUID(ORDER_ID) = #{orderId}
 </delete>

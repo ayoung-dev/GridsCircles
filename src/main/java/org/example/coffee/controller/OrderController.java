@@ -37,4 +37,15 @@ public class OrderController {
         orderService.deleteOrder(orderId);
         return ResponseEntity.ok(orderId + " has been deleted");
     }
+
+    /**
+     * 주문자 정보 수정하는 메서드
+     * @param orderId 수정할 주문 아이디
+     */
+    @PutMapping("/info/{orderId}")
+    public ResponseEntity<OrderDTO> getOrder(@PathVariable String orderId, @RequestBody OrderDTO orderDTO) throws SQLException {
+        orderDTO.setOrderId(orderId);
+        orderService.updateInfo(orderDTO);
+        return ResponseEntity.ok(orderDTO);
+    }
 }
