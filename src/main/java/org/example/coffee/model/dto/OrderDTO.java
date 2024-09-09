@@ -1,6 +1,7 @@
 package org.example.coffee.model.dto;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 /**
  * 주문 DTO 클래스
@@ -14,14 +15,16 @@ public class OrderDTO {
     private String orderStatus;
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
+    private List<OrderItemDTO> orderItemDTOList;
 
     public OrderDTO() {}
 
-    public OrderDTO(String email, String address, String postcode, String orderStatus) {
+    public OrderDTO(String email, String address, String postcode, String orderStatus, List<OrderItemDTO> orderItemDTOList) {
         this.email = email;
         this.address = address;
         this.postcode = postcode;
         this.orderStatus = orderStatus;
+        this.orderItemDTOList = orderItemDTOList;
     }
 
     public String getOrderId() {
@@ -78,5 +81,13 @@ public class OrderDTO {
 
     public void setUpdatedAt(LocalDateTime updatedAt) {
         this.updatedAt = updatedAt;
+    }
+
+    public List<OrderItemDTO> getOrderItemDTOList() {
+        return orderItemDTOList;
+    }
+
+    public void setOrderItemDTOList(List<OrderItemDTO> orderItemDTOList) {
+        this.orderItemDTOList = orderItemDTOList;
     }
 }
