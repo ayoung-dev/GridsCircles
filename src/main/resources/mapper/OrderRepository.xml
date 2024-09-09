@@ -4,7 +4,7 @@
 
 <insert id="insertOrder" parameterType="org.example.coffee.model.dto.OrderDTO">
 INSERT INTO ORDERS(ORDER_ID, EMAIL, ADDRESS, POSTCODE, ORDER_STATUS, CREATED_AT)
-VALUES(UUID_TO_BIN(UUID()), #{email}, #{address}, #{postcode}, #{orderStatus}, NOW())
+VALUES(UUID_TO_BIN(UUID()), #{email}, #{address}, #{postcode}, "주문완료", NOW())
 </insert>
 
 <update id="updateOrder" parameterType="org.example.coffee.model.dto.OrderDTO">
