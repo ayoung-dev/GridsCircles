@@ -36,7 +36,7 @@ UPDATE PRODUCTS SET
     <if test="description != null">
         DESCRIPTION = #{description},
     </if>
-    UPDATED_AT = #{updatedAt}
+    UPDATED_AT = NOW()
 WHERE BIN_TO_UUID(PRODUCT_ID) = #{productId}
 </update>
 

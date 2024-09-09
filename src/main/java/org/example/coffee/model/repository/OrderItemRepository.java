@@ -8,6 +8,8 @@ import java.util.List;
 
 @Mapper
 public interface OrderItemRepository {
-    void insertOrderItem(OrderItemDTO orderItemDTO) throws SQLException;
+    int insertOrderItem(OrderItemDTO orderItemDTO) throws SQLException;
     List<OrderItemDTO> findByOrderId(String orderId) throws SQLException;
+    int updateOrderItem(int seq, int quantity) throws SQLException;
+    int deleteOrderItem(int seq) throws SQLException;
 }
