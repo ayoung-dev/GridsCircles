@@ -22,4 +22,8 @@ WHERE BIN_TO_UUID(ORDER_ID) = #{orderId}
 <delete id="deleteOrder" parameterType="string">
 DELETE FROM ORDERS WHERE BIN_TO_UUID(ORDER_ID) = #{orderId}
 </delete>
+
+<select id="findByEmail" parameterType="string" resultType="string">
+SELECT BIN_TO_UUID(ORDER_ID) FROM ORDERS WHERE EMAIL = #{email}
+</select>
 </mapper>

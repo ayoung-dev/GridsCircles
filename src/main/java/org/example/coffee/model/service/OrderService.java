@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.sql.SQLException;
+import java.util.List;
 
 @Service
 public class OrderService {
@@ -35,5 +36,18 @@ public class OrderService {
 
     public int updateInfo(OrderDTO orderDTO) throws SQLException {
         return orderRepo.updateOrder(orderDTO);
+    }
+
+    public List<List<OrderItemDTO>> getItemsByEmailList(String email) throws SQLException {
+        List<List<OrderItemDTO>> orderItemList = new java.util.ArrayList<>(List.of());
+
+        //order 테이블에서 주문 조회
+        List<String> orders = orderRepo.findByEmail(email);
+        for(String order : orders) {
+            List<OrderItemDTO> orderItemDTOList = orderItemRepo.findByOrderId(order);
+            orderItemList.add(orderItemDTOList);
+        }
+
+        return orderItemList;
     }
 }

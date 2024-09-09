@@ -14,12 +14,14 @@ public class OrderItemDTO {
 
     public OrderItemDTO() {}
 
-    public OrderItemDTO(String orderId, String productId, String category, int price, int quantity) {
+    public OrderItemDTO(String orderId, String productId, String category, int price, int quantity, LocalDateTime createdAt, LocalDateTime updatedAt) {
         this.orderId = orderId;
         this.productId = productId;
         this.category = category;
         this.price = price;
         this.quantity = quantity;
+        this.createdAt = createdAt;
+        this.updatedAt = updatedAt;
     }
 
     public int getSeq() {
