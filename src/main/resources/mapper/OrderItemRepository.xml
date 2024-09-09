@@ -12,4 +12,17 @@ SELECT SEQ, BIN_TO_UUID(ORDER_ID) AS 'orderId', BIN_TO_UUID(PRODUCT_ID) AS 'prod
 FROM ORDER_ITEMS WHERE BIN_TO_UUID(ORDER_ID) = #{orderId}
 </select>
 
+<update id="updateOrderItem">
+UPDATE ORDER_ITEMS SET
+    <if test="quantity != 0">
+        QUANTITY = #{quantity},
+    </if>
+    UPDATED_AT = NOW()
+    WHERE SEQ = #{seq}
+</update>
+
+<delete id="deleteOrderItem">
+DELETE FROM ORDER_ITEMS WHERE SEQ = #{seq}
+</delete>
+
 </mapper>

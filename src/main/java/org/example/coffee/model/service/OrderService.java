@@ -50,4 +50,16 @@ public class OrderService {
 
         return orderItemList;
     }
+
+    public int updateOrderItem(int seq, int quantity) throws SQLException {
+        return orderItemRepo.updateOrderItem(seq, quantity);
+    }
+
+    public int deleteOrderItem(int seq) throws SQLException {
+        return orderItemRepo.deleteOrderItem(seq);
+    }
+
+    public int addOrderItem(OrderItemDTO orderItemDTO) throws SQLException {
+        return orderItemRepo.insertOrderItem(orderItemDTO);
+    }
 }
