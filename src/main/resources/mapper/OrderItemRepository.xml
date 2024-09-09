@@ -7,4 +7,9 @@ INSERT INTO ORDER_ITEMS(ORDER_ID, PRODUCT_ID, CATEGORY, PRICE, QUANTITY, CREATED
 VALUES(UUID_TO_BIN(#{orderId}), UUID_TO_BIN(#{productId}), #{category}, #{price}, #{quantity}, NOW())
 </insert>
 
+<select id="findByOrderId" parameterType="string" resultType="org.example.coffee.model.dto.OrderItemDTO">
+SELECT SEQ, BIN_TO_UUID(ORDER_ID) AS 'orderId', BIN_TO_UUID(PRODUCT_ID) AS 'productId', CATEGORY, PRICE, QUANTITY, CREATED_AT AS 'createdAt', UPDATED_AT as 'updatedAt'
+FROM ORDER_ITEMS WHERE BIN_TO_UUID(ORDER_ID) = #{orderId}
+</select>
+
 </mapper>

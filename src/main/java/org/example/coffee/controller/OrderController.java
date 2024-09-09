@@ -1,12 +1,14 @@
 package org.example.coffee.controller;
 
 import org.example.coffee.model.dto.OrderDTO;
+import org.example.coffee.model.dto.OrderItemDTO;
 import org.example.coffee.model.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.sql.SQLException;
+import java.util.List;
 
 /**
  * 주문 Controller 클래스
@@ -47,5 +49,14 @@ public class OrderController {
         orderDTO.setOrderId(orderId);
         orderService.updateInfo(orderDTO);
         return ResponseEntity.ok(orderDTO);
+    }
+
+    /**
+     * 이메일로 주문 조회하는 메서드
+     * @param email 조회할 주문 이메일
+     */
+    @GetMapping("/{email}")
+    public ResponseEntity<List<List<OrderItemDTO>>> getOrderByEmail(@PathVariable String email) throws SQLException {
+        return ResponseEntity.ok(orderService.getItemsByEmailList(email));
     }
 }
